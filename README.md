@@ -66,4 +66,6 @@ v1.0.4, mean hazard and fractiles; last accessed July 2026). See:
 
 ## License
 
-[TBC by author, e.g., MIT for code / CC-BY-4.0 for data.]
+MIT (see `LICENSE`) — free for anyone to use, modify, and redistribute with
+attribution. The underlying hazard and disaggregation data are from the
+publicly available 2022 NZ National Seismic Hazard Model (see Data provenance).
