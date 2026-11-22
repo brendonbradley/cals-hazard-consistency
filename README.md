@@ -35,10 +35,11 @@ figures/    Output figures (PDF, as included in the paper; PNG copies in output/
 output/     Derived CSV results, LaTeX table rows, and PNG previews.
 ```
 
-Figure files used in the paper: `fig_concept_frac_k15` (Fig. 1),
-`fig_normalized_hazard_v3` (Fig. 2), `fig_rp_ratio_summary_v4_linT` (Fig. 3),
-`fig_cms_m` (Fig. 4), `fig_disagg_SA0p5` (Fig. 5), `fig_appendix_IL4k13_v2`
-(Fig. 6, Appendix). Remaining outputs are supplementary variants.
+Figure files used in the paper (revised version, R1): `fig_concept_frac_k15`
+(Fig. 1), `fig_normalized_hazard_v3` (Fig. 2), `fig_rp_ratio_summary_v5_linT`
+(Fig. 3, including the m=1.3 IL4 case as dashed lines), `fig_cms_m` (Fig. 4),
+and `fig_disagg_SA0p5` (Fig. 5). Remaining outputs are supplementary variants
+(including those of the originally submitted version).
 
 ## Requirements and usage
 

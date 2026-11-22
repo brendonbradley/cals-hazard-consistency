@@ -187,6 +187,41 @@ for case, rp, k in CASES_V3:
     print(f"fig3v3 {case} (k={k}): RP ratio {allr.min():.2f}-{allr.max():.2f} "
           f"(RP {rp*allr.min():.0f}-{rp*allr.max():.0f} yr)")
 
+# =============== Figure 3 v5 (R1): as v4_linT, plus IL4 m=1.3 (Isolation Guideline) dashed ===============
+res13 = {code: [rp_cals(code, p, 2500, 1.3)/2500 for p in PERS_ALL] for code in SITES}
+fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.6), sharey=True)
+for iax, (ax, (case, rp, k)) in enumerate(zip(axes, CASES_V3)):
+    ax.axhspan(2.0, 3.0, color="0.88", alpha=0.65, zorder=0)
+    for code in SITES:
+        ax.plot(T_ALL, res[(case, code)], mk[code]+"-", color=scol[code], ms=3.2,
+                lw=0.8, mfc="white", mew=0.9)
+        if case == "IL4":
+            ax.plot(T_ALL, res13[code], mk[code]+"--", color=scol[code], ms=2.4,
+                    lw=0.8, mfc="white", mew=0.7)
+    if iax == 0:
+        ax.annotate("Recommended\nrange", xy=(5.0, 2.8), xytext=(5.0, 4.1), fontsize=7.5,
+                    color="0.3", ha="center", va="center",
+                    arrowprops=dict(arrowstyle="->", lw=0.9, color="0.3"))
+    ax.set_xlim(-0.3, 10.3)
+    ax.set_xticks([0, 2, 4, 6, 8, 10])
+    ttl = f"{case}: $RP_{{ULS}}$={rp} yr, $m$={k}" if case != "IL4" else \
+          f"{case}: $RP_{{ULS}}$={rp} yr, $m$=1.5, 1.3"
+    ax.set_title(ttl, fontsize=9)
+    ax.set_ylim(1.0, 5.1)
+axes[0].set_ylabel("Return period ratio, $RP_{CALS}/RP_{ULS}$")
+axes[1].set_xlabel("Period, $T$ (s)")
+h_sites = [plt.Line2D([], [], color=scol[c], marker=mk[c], mfc="white", lw=0.8, ms=3.2,
+                      label=sname[c]) for c in SITES]
+h_m = [plt.Line2D([], [], color="0.3", ls="-", lw=0.9, label="$m$=1.5"),
+       plt.Line2D([], [], color="0.3", ls="--", lw=0.9, label="$m$=1.3")]
+axes[1].legend(handles=h_sites, fontsize=6.5, loc="upper right", framealpha=0.95)
+axes[2].legend(handles=h_m, fontsize=6.5, loc="upper right", framealpha=0.95, handlelength=2.4)
+fig.tight_layout(pad=0.4)
+fig.savefig(f"{FIGD}/fig_rp_ratio_summary_v5_linT.pdf", bbox_inches="tight")
+fig.savefig(f"{OUTD}/fig_rp_ratio_summary_v5_linT.png", bbox_inches="tight", dpi=160)
+a13 = np.array(list(res13.values()))
+print(f"fig3v5 IL4 m=1.3: RP ratio {a13.min():.2f}-{a13.max():.2f}")
+
 # =============== 5. Appendix figure: IL4 with k=1.3 (two panels) ===============
 case, rp, k = "IL4", 2500, 1.3
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.0, 2.8))
